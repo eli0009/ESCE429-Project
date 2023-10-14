@@ -6,9 +6,12 @@ if __name__ == "__main__":
     sendRequest("GET", "http://localhost:4567/todos", True)
     sendRequest("HEAD", "http://localhost:4567/todos", True)
 
-    # data = """create paperwork"""
-    # sendRequest(
-    #     "HEAD",
-    #     "http://localhost:4567/todos",
-    #     True,
-    # )
+    data = """'title': "create paperwork"""
+    sendRequest(
+        "POST",
+        "http://localhost:4567/todos",
+        True,
+        data,
+    )
+
+    # sendRequest("POST", "http://localhost:4567/todos", True, data)
