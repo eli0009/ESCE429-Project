@@ -24,5 +24,5 @@ def sendRequest(
         return response
     else:
         if prettyprint:
-            print(f"Error: {response.status_code}")
+            print(f"{method} Error {response.status_code}: {response.reason}")
         return None
