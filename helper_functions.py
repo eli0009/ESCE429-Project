@@ -1,7 +1,5 @@
 from pprint import pprint
-
 import requests
-
 
 def sendRequest(
     method,

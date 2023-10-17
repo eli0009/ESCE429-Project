@@ -1,17 +1,21 @@
 import unittest
-
 from helper_functions import *
+import json
+
+url = 'http://localhost:4567/todos'
+
+headers = {
+    'Content-type':'application/json', 
+    'Accept':'application/json'
+}
 
 if __name__ == "__main__":
-    sendRequest("GET", "http://localhost:4567/todos", True)
-    sendRequest("HEAD", "http://localhost:4567/todos", True)
+   sendRequest("GET", url, True)
+   sendRequest("HEAD", url, True)
 
-    data = """'title': "create paperwork"""
-    sendRequest(
-        "POST",
-        "http://localhost:4567/todos",
-        True,
-        data,
-    )
-
-    # sendRequest("POST", "http://localhost:4567/todos", True, data)
+data = json.dumps({
+  "title": "testing paperwork",
+  "doneStatus": False,
+  "description": ""
+})
+sendRequest("POST", url, True, data)
