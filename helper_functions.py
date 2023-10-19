@@ -4,6 +4,16 @@ from pprint import pprint
 
 import requests
 
+TEST_DATA_ID = {
+    "title": "officia deserunt mol",
+    "doneStatus": True,
+    "description": "deserunt mollit anim",
+}
+TEST_DATA_CATEGORY = {
+    "title": "Whatever",
+    "description": "This is a description",
+}
+
 
 def printResponse(response, type):
     """
@@ -122,9 +132,15 @@ def todosGetEntries(URL="todos"):
     return r.json().get("todos")
 
 
+def todosCategoriesGetEntries(URL="todos/:id/categories"):
+    r = sendRequest("GET", URL)
+    return r.json().get("categories")
+
+
 def todosSetUp(URL="todos"):
     """
-    SetUp database for testing, test if API is running, delete all data from database
+    SetUp database for testing, test if API is running,
+    delete all data from database, including id, categories, projects
     """
     data = {
         "title": "officia deserunt mol",

@@ -10,12 +10,6 @@ class TestTodos(unittest.TestCase):
     def setUp(self):
         """initialize database for testing"""
         self.URL = "todos"
-        self.data = {
-            "title": "officia deserunt mol",
-            "doneStatus": True,
-            "description": "deserunt mollit anim",
-        }
-
         self.assertTrue(todosSetUp(self.URL))
 
     def testXML(self):
@@ -27,7 +21,7 @@ class TestTodos(unittest.TestCase):
         self.assertTrue(isJSON(r))
 
     def testAddEntry(self):
-        r = sendRequest("POST", self.URL, data=self.data)
+        r = sendRequest("POST", self.URL, data=TEST_DATA_ID)
         # check request success
         self.assertIsNotNone(r)
         # check data was added
@@ -36,7 +30,7 @@ class TestTodos(unittest.TestCase):
     def testGetAll(self):
         """add 5 entries and get them all"""
         for i in range(5):
-            sendRequest("POST", self.URL, data=self.data)
+            sendRequest("POST", self.URL, data=TEST_DATA_ID)
         self.assertEqual(len(todosGetEntries(self.URL)), 5)
 
     def testHead(self):

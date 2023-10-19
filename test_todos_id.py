@@ -6,12 +6,8 @@ from helper_functions import *
 class TestTodosId(unittest.TestCase):
     def setUp(self):
         self.assertTrue(todosSetUp("todos"))
-        self.data = {
-            "title": "officia deserunt mol",
-            "doneStatus": True,
-            "description": "deserunt mollit anim",
-        }
-        self.r = sendRequest("POST", "todos", data=self.data)
+        # add entry and get id
+        self.r = sendRequest("POST", "todos", data=TEST_DATA_ID)
         self.id = self.r.json().get("id")
         self.URL = f"todos/{self.id}"
 
@@ -35,14 +31,16 @@ class TestTodosId(unittest.TestCase):
         self.assertEqual(len(todosGetEntries()), 0)
 
     def testPost(self):
-        self.data["title"] = "new title"
-        sendRequest("POST", self.URL, data=self.data)
+        new_data = {**TEST_DATA_ID}
+        new_data["title"] = "new title"
+        sendRequest("POST", self.URL, data=new_data)
         self.assertEqual(todosGetEntries()[0].get("id"), self.id)
         self.assertEqual(todosGetEntries()[0].get("title"), "new title")
 
     def testAmend(self):
-        self.data["title"] = "new title"
-        sendRequest("PUT", self.URL, data=self.data)
+        new_data = {**TEST_DATA_ID}
+        new_data["title"] = "new title"
+        sendRequest("PUT", self.URL, data=new_data)
         self.assertEqual(todosGetEntries()[0].get("id"), self.id)
         self.assertEqual(todosGetEntries()[0].get("title"), "new title")
 
