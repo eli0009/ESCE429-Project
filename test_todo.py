@@ -1,21 +1,23 @@
+import json
 import unittest
 from helper_functions import *
 import json
 
-url = 'http://localhost:4567/todos'
-
-headers = {
-    'Content-type':'application/json', 
-    'Accept':'application/json'
-}
-
 if __name__ == "__main__":
-   sendRequest("GET", url, True)
-   sendRequest("HEAD", url, True)
+    # r = requests.post("http://httpbin.org/post", json={"test": "cheers"})
+    # print(r.status_code)
 
-data = json.dumps({
-  "title": "testing paperwork",
-  "doneStatus": False,
-  "description": ""
-})
-sendRequest("POST", url, True, data)
+    # sendRequest("GET", "http://localhost:4567/todos", True)
+    # sendRequest("HEAD", "http://localhost:4567/todos", True)
+
+    data = {
+        "title": "officia deserunt mol",
+        "doneStatus": True,
+    }
+    r = sendRequest(
+        "POST",
+        "todos",
+        True,
+        data,
+    )
+    print(r.json().get("id"))
