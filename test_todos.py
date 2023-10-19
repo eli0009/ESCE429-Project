@@ -16,15 +16,7 @@ class TestTodos(unittest.TestCase):
             "description": "deserunt mollit anim",
         }
 
-        # check if api is running
-        if isAPIRunning(self.URL) is False:
-            self.fail("API is not running")
-
-        ## delete all data database
-        for entry in todosGetEntries(self.URL):
-            sendRequest("DELETE", f"todos/{entry.get('id')}")
-        # check if database is empty
-        self.assertEqual(len(todosGetEntries(self.URL)), 0)
+        self.assertTrue(todosSetUp(self.URL))
 
     def testXML(self):
         r = sendRequest("GET", self.URL, payload_type="xml")

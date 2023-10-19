@@ -120,3 +120,27 @@ def todosGetEntries(URL="todos"):
     """
     r = sendRequest("GET", URL)
     return r.json().get("todos")
+
+
+def todosSetUp(URL="todos"):
+    """
+    SetUp database for testing, test if API is running, delete all data from database
+    """
+    data = {
+        "title": "officia deserunt mol",
+        "doneStatus": True,
+        "description": "deserunt mollit anim",
+    }
+
+    # check if api is running
+    if isAPIRunning(URL) is False:
+        return False
+
+    ## delete all data database
+    for entry in todosGetEntries(URL):
+        sendRequest("DELETE", f"todos/{entry.get('id')}")
+    # check if database is empty
+    if len(todosGetEntries(URL)) != 0:
+        return False
+
+    return True
