@@ -32,8 +32,16 @@ class TestTodosIdCategories(unittest.TestCase):
         self.assertTrue(isHEAD(r))
 
     def testDelete(self):
+        """Test case for /todos/:id/categories/:id"""
         r = sendRequest("DELETE", f"{self.URL}/{self.category_id}")
         self.assertEqual(len(todosCategoriesGetEntries()), 0)
+
+    def testPost(self):
+        r = sendRequest("POST", self.URL, data=TEST_DATA_CATEGORY)
+        # check that there are 2 categories
+        self.assertEqual(len(todosCategoriesGetEntries()), 2)
+        # check that there is a new category associated with the id
+        self.assertEqual(len(todosGetEntries()[0].get("categories")), 2)
 
 
 if __name__ == "__main__":
