@@ -4,27 +4,78 @@ import unittest
 from helper_functions import *
 
 
-class TestTodo(unittest.TestCase):
-    def test(self):
-        self.assertEqual(True, True)
+class TestTodos(unittest.TestCase):
+    def setUp(self):
+        """initialize database for testing"""
+        self.URL = "todos"
+        self.data = {
+            "title": "officia deserunt mol",
+            "doneStatus": True,
+            "description": "deserunt mollit anim",
+        }
+
+        # check if api is running
+        if isAPIRunning(self.URL) is False:
+            self.fail("API is not running")
+
+        ## delete all data database
+        for entry in todosGetEntries(self.URL):
+            sendRequest("DELETE", f"todos/{entry.get('id')}")
+        # check if database is empty
+        self.assertEqual(len(todosGetEntries(self.URL)), 0)
+
+    def testXML(self):
+        r = sendRequest("GET", self.URL, payload_type="xml")
+        self.assertTrue(isXML(r))
+
+    def testJSON(self):
+        r = sendRequest("GET", self.URL, payload_type="json")
+        self.assertTrue(isJSON(r))
+
+    def testAddEntry(self):
+        r = sendRequest("POST", self.URL, data=self.data)
+        # check request success
+        self.assertIsNotNone(r)
+        # check data was added
+        self.assertEqual(len(todosGetEntries(self.URL)), 1)
+
+    def testGetAll(self):
+        """add 5 entries and get them all"""
+        for i in range(5):
+            sendRequest("POST", self.URL, data=self.data)
+        self.assertEqual(len(todosGetEntries(self.URL)), 5)
+
+    def testHead(self):
+        r = sendRequest("HEAD", self.URL)
+        self.assertTrue(isHEAD(r))
+
+    # def testGetAll
+
+    # def testGetAll(self):
+    #     r = sendRequest("GET", self.URL, payload_type="json")
+    #     self.assertEqual(len(r.json().get("todos")), 300)
 
 
 if __name__ == "__main__":
-    # r = requests.post("http://httpbin.org/post", json={"test": "cheers"})
-    # print(r.status_code)
+    # get
+    r = sendRequest("GET", "todos", True)
+    # entries = r.json().get("todos")
+    # for entry in entries:
+    #     sendRequest("DELETE", f"todos/{entry.get('id')}", True)
 
-    # sendRequest("GET", "http://localhost:4567/todos", True)
-    # sendRequest("HEAD", "http://localhost:4567/todos", True)
+    # head
+    r = sendRequest("HEAD", "todos", True)
+    print(r.text == "")
 
-    data = {
-        "title": "officia deserunt mol",
-        "doneStatus": True,
-    }
-    r = sendRequest(
-        "POST",
-        "todos",
-        True,
-        data,
-        payload_type="xml",
-    )
-    # print(r.json().get("id"))
+    ## post
+    # data = {
+    #     "title": "officia deserunt mol",
+    #     "doneStatus": True,
+    #     "description": "deserunt mollit anim",
+    # }
+    # r = sendRequest(
+    #     "POST",
+    #     "todos",
+    #     True,
+    #     data,
+    # )

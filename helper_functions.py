@@ -26,7 +26,7 @@ def sendRequest(
     url,
     prettyprint=False,
     data=None,
-    payload_type="xml",
+    payload_type="json",
     base_url="http://localhost:4567/",
 ):
     """
@@ -37,21 +37,86 @@ def sendRequest(
     """
     headers = {"Accept": f"application/{payload_type}", "Content-Type": "text/plain"}
 
-    response = requests.request(
-        method,
-        base_url + url,
-        data=str(data),
-        headers=headers,
-    )
-
-    if response.status_code in (200, 201, 204):
-        if prettyprint:
-            if method == "HEAD":
-                pprint(response.headers, indent=4)
-            elif method in ("GET", "POST"):
-                printResponse(response, payload_type)
-        return response
-    else:
-        if prettyprint:
-            print(f"{method} Error {response.status_code}: {response.reason}")
+    try:
+        response = requests.request(
+            method,
+            base_url + url,
+            data=str(data),
+            headers=headers,
+        )
+        if response.status_code in (200, 201, 204):
+            if prettyprint:
+                if method == "HEAD":
+                    pprint(response.headers, indent=4)
+                elif method in ("GET", "POST"):
+                    printResponse(response, payload_type)
+            return response
+        else:
+            if prettyprint:
+                print(f"{method} Error {response.status_code}: {response.reason}")
+            return None
+    except:
         return None
+
+
+"""Check response is valid XML and JSON"""
+
+
+def isAPIRunning(URL):
+    """
+    Check that the API is running
+    """
+    r = sendRequest("GET", URL)
+    if r is None:
+        return False
+    else:
+        return True
+
+
+def isJSON(response):
+    """
+    Check that the response is valid JSON
+    response: response object from requests
+    """
+    try:
+        response.json()
+        return True
+    except ValueError:
+        return False
+
+
+def isXML(response):
+    """
+    Check that the response is valid XML
+    response: response object from requests
+    """
+    try:
+        ET.fromstring(response.text)
+        return True
+    except ET.ParseError:
+        return False
+
+
+def isHEAD(response):
+    """
+    Check that the response is a valid HEAD response
+    """
+    if (
+        response.status_code == 200
+        and response.text == ""
+        and response.headers.get("Content-Type") == "application/json"
+    ):
+        return True
+    else:
+        return False
+
+
+"""Test todos"""
+
+
+def todosGetEntries(URL="todos"):
+    """
+    Get all entries from the todos database
+    """
+    r = sendRequest("GET", URL)
+    return r.json().get("todos")
