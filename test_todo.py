@@ -19,6 +19,6 @@ if __name__ == "__main__":
         "todos",
         True,
         data,
-        payload_type="json",
+        payload_type="xml",
     )
     # print(r.json().get("id"))
