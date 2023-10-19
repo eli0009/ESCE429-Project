@@ -1,18 +1,22 @@
 from pprint import pprint
+
 import requests
+
 
 def sendRequest(
     method,
     url,
     prettyprint=False,
     data=None,
+    payload_type="xml",
     base_url="http://localhost:4567/",
-    headers={"Content-Type": "text/plain"},
 ):
     """
     Send a request to the API and return the response
     prettyprint: if True, prettyprint the response (only for GET requests)
     """
+    headers = {"Accept": f"application/{payload_type}", "Content-Type": "text/plain"}
+
     response = requests.request(
         method,
         base_url + url,
@@ -27,7 +31,7 @@ def sendRequest(
             elif method == "HEAD":
                 pprint(response.headers, indent=4)
             elif method == "POST":
-                pprint(response.json(), indent=4)
+                pprint(response.content, indent=4)
         return response
     else:
         if prettyprint:
