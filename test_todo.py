@@ -10,7 +10,6 @@ class TestTodo(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
     # r = requests.post("http://httpbin.org/post", json={"test": "cheers"})
     # print(r.status_code)
 
