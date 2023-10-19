@@ -1,0 +1,1175 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Todo Manager",
+    "description": "A Simple todo manager with categories and projects.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/todos": {
+      "get": {
+        "description": "return all the instances of todo",
+        "responses": {
+          "200": {
+            "description": "All the todos"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "we should be able to create todo without a ID using the field values in the body of the message",
+        "responses": {
+          "201": {
+            "description": "Created a todo"
+          },
+          "400": {
+            "description": "Error when creating a todo"
+          }
+        }
+      },
+      "delete": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of todos",
+        "responses": {
+          "200": {
+            "description": "the endpoint verb options"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for all the instances of todo",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/todos/:id": {
+      "get": {
+        "description": "return a specific instances of todo using a id",
+        "responses": {
+          "200": {
+            "description": "A specific todo"
+          },
+          "404": {
+            "description": "Could not find a specific todo"
+          }
+        }
+      },
+      "put": {
+        "description": "amend a specific instances of todo using a id with a body containing the fields to amend",
+        "responses": {
+          "200": {
+            "description": "Replaced the specific todo details"
+          },
+          "404": {
+            "description": "Could not find a specific todo"
+          }
+        }
+      },
+      "post": {
+        "description": "amend a specific instances of todo using a id with a body containing the fields to amend",
+        "responses": {
+          "200": {
+            "description": "Amended the specific todo"
+          },
+          "404": {
+            "description": "Could not find a specific todo"
+          }
+        }
+      },
+      "delete": {
+        "description": "delete a specific instances of todo using a id",
+        "responses": {
+          "200": {
+            "description": "Deleted a specific todo"
+          },
+          "404": {
+            "description": "Could not find a specific todo"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of todos/:id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for a specific instances of todo using a id",
+        "responses": {
+          "200": {
+            "description": "Headers for a specific todo"
+          },
+          "404": {
+            "description": "Could not find a specific todo"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/todos/:id/categories": {
+      "get": {
+        "description": "return all the category items related to todo, with given id, by the relationship named categories",
+        "responses": {
+          "200": {
+            "description": "all the related the category items"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "create an instance of a relationship named categories between todo instance :id and the category instance represented by the id in the body of the message",
+        "responses": {
+          "201": {
+            "description": "created the relationship"
+          },
+          "400": {
+            "description": "error when creating the relationship"
+          }
+        }
+      },
+      "delete": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of todos/:id/categories",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for the category items related to todo, with given id, by the relationship named categories",
+        "responses": {
+          "200": {
+            "description": "headers for all the related the category items"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/todos/:id/categories/:id": {
+      "get": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "delete": {
+        "description": "delete the instance of the relationship named categories between todo and category using the :id",
+        "responses": {
+          "200": {
+            "description": "deleted the relationship"
+          },
+          "400": {
+            "description": "error when deleting the relationship"
+          },
+          "404": {
+            "description": "relationship not found"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of todos/:id/categories/:id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/todos/:id/tasksof": {
+      "get": {
+        "description": "return all the project items related to todo, with given id, by the relationship named tasksof",
+        "responses": {
+          "200": {
+            "description": "all the related the project items"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "create an instance of a relationship named tasksof between todo instance :id and the project instance represented by the id in the body of the message",
+        "responses": {
+          "201": {
+            "description": "created the relationship"
+          },
+          "400": {
+            "description": "error when creating the relationship"
+          }
+        }
+      },
+      "delete": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of todos/:id/tasksof",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for the project items related to todo, with given id, by the relationship named tasksof",
+        "responses": {
+          "200": {
+            "description": "headers for all the related the project items"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/todos/:id/tasksof/:id": {
+      "get": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "delete": {
+        "description": "delete the instance of the relationship named tasksof between todo and project using the :id",
+        "responses": {
+          "200": {
+            "description": "deleted the relationship"
+          },
+          "400": {
+            "description": "error when deleting the relationship"
+          },
+          "404": {
+            "description": "relationship not found"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of todos/:id/tasksof/:id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "description": "return all the instances of project",
+        "responses": {
+          "200": {
+            "description": "All the projects"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "we should be able to create project without a ID using the field values in the body of the message",
+        "responses": {
+          "201": {
+            "description": "Created a project"
+          },
+          "400": {
+            "description": "Error when creating a project"
+          }
+        }
+      },
+      "delete": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of projects",
+        "responses": {
+          "200": {
+            "description": "the endpoint verb options"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for all the instances of project",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/projects/:id": {
+      "get": {
+        "description": "return a specific instances of project using a id",
+        "responses": {
+          "200": {
+            "description": "A specific project"
+          },
+          "404": {
+            "description": "Could not find a specific project"
+          }
+        }
+      },
+      "put": {
+        "description": "amend a specific instances of project using a id with a body containing the fields to amend",
+        "responses": {
+          "200": {
+            "description": "Replaced the specific project details"
+          },
+          "404": {
+            "description": "Could not find a specific project"
+          }
+        }
+      },
+      "post": {
+        "description": "amend a specific instances of project using a id with a body containing the fields to amend",
+        "responses": {
+          "200": {
+            "description": "Amended the specific project"
+          },
+          "404": {
+            "description": "Could not find a specific project"
+          }
+        }
+      },
+      "delete": {
+        "description": "delete a specific instances of project using a id",
+        "responses": {
+          "200": {
+            "description": "Deleted a specific project"
+          },
+          "404": {
+            "description": "Could not find a specific project"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of projects/:id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for a specific instances of project using a id",
+        "responses": {
+          "200": {
+            "description": "Headers for a specific project"
+          },
+          "404": {
+            "description": "Could not find a specific project"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/projects/:id/categories": {
+      "get": {
+        "description": "return all the category items related to project, with given id, by the relationship named categories",
+        "responses": {
+          "200": {
+            "description": "all the related the category items"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "create an instance of a relationship named categories between project instance :id and the category instance represented by the id in the body of the message",
+        "responses": {
+          "201": {
+            "description": "created the relationship"
+          },
+          "400": {
+            "description": "error when creating the relationship"
+          }
+        }
+      },
+      "delete": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of projects/:id/categories",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for the category items related to project, with given id, by the relationship named categories",
+        "responses": {
+          "200": {
+            "description": "headers for all the related the category items"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/projects/:id/categories/:id": {
+      "get": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "delete": {
+        "description": "delete the instance of the relationship named categories between project and category using the :id",
+        "responses": {
+          "200": {
+            "description": "deleted the relationship"
+          },
+          "400": {
+            "description": "error when deleting the relationship"
+          },
+          "404": {
+            "description": "relationship not found"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of projects/:id/categories/:id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/projects/:id/tasks": {
+      "get": {
+        "description": "return all the todo items related to project, with given id, by the relationship named tasks",
+        "responses": {
+          "200": {
+            "description": "all the related the todo items"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "create an instance of a relationship named tasks between project instance :id and the todo instance represented by the id in the body of the message",
+        "responses": {
+          "201": {
+            "description": "created the relationship"
+          },
+          "400": {
+            "description": "error when creating the relationship"
+          }
+        }
+      },
+      "delete": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of projects/:id/tasks",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for the todo items related to project, with given id, by the relationship named tasks",
+        "responses": {
+          "200": {
+            "description": "headers for all the related the todo items"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/projects/:id/tasks/:id": {
+      "get": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "delete": {
+        "description": "delete the instance of the relationship named tasks between project and todo using the :id",
+        "responses": {
+          "200": {
+            "description": "deleted the relationship"
+          },
+          "400": {
+            "description": "error when deleting the relationship"
+          },
+          "404": {
+            "description": "relationship not found"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of projects/:id/tasks/:id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "description": "return all the instances of category",
+        "responses": {
+          "200": {
+            "description": "All the categories"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "we should be able to create category without a ID using the field values in the body of the message",
+        "responses": {
+          "201": {
+            "description": "Created a category"
+          },
+          "400": {
+            "description": "Error when creating a category"
+          }
+        }
+      },
+      "delete": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of categories",
+        "responses": {
+          "200": {
+            "description": "the endpoint verb options"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for all the instances of category",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/categories/:id": {
+      "get": {
+        "description": "return a specific instances of category using a id",
+        "responses": {
+          "200": {
+            "description": "A specific category"
+          },
+          "404": {
+            "description": "Could not find a specific category"
+          }
+        }
+      },
+      "put": {
+        "description": "amend a specific instances of category using a id with a body containing the fields to amend",
+        "responses": {
+          "200": {
+            "description": "Replaced the specific category details"
+          },
+          "404": {
+            "description": "Could not find a specific category"
+          }
+        }
+      },
+      "post": {
+        "description": "amend a specific instances of category using a id with a body containing the fields to amend",
+        "responses": {
+          "200": {
+            "description": "Amended the specific category"
+          },
+          "404": {
+            "description": "Could not find a specific category"
+          }
+        }
+      },
+      "delete": {
+        "description": "delete a specific instances of category using a id",
+        "responses": {
+          "200": {
+            "description": "Deleted a specific category"
+          },
+          "404": {
+            "description": "Could not find a specific category"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of categories/:id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for a specific instances of category using a id",
+        "responses": {
+          "200": {
+            "description": "Headers for a specific category"
+          },
+          "404": {
+            "description": "Could not find a specific category"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/categories/:id/todos": {
+      "get": {
+        "description": "return all the todo items related to category, with given id, by the relationship named todos",
+        "responses": {
+          "200": {
+            "description": "all the related the todo items"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "create an instance of a relationship named todos between category instance :id and the todo instance represented by the id in the body of the message",
+        "responses": {
+          "201": {
+            "description": "created the relationship"
+          },
+          "400": {
+            "description": "error when creating the relationship"
+          }
+        }
+      },
+      "delete": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of categories/:id/todos",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for the todo items related to category, with given id, by the relationship named todos",
+        "responses": {
+          "200": {
+            "description": "headers for all the related the todo items"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/categories/:id/todos/:id": {
+      "get": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "delete": {
+        "description": "delete the instance of the relationship named todos between category and todo using the :id",
+        "responses": {
+          "200": {
+            "description": "deleted the relationship"
+          },
+          "400": {
+            "description": "error when deleting the relationship"
+          },
+          "404": {
+            "description": "relationship not found"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of categories/:id/todos/:id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/categories/:id/projects": {
+      "get": {
+        "description": "return all the project items related to category, with given id, by the relationship named projects",
+        "responses": {
+          "200": {
+            "description": "all the related the project items"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "create an instance of a relationship named projects between category instance :id and the project instance represented by the id in the body of the message",
+        "responses": {
+          "201": {
+            "description": "created the relationship"
+          },
+          "400": {
+            "description": "error when creating the relationship"
+          }
+        }
+      },
+      "delete": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of categories/:id/projects",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "headers for the project items related to category, with given id, by the relationship named projects",
+        "responses": {
+          "200": {
+            "description": "headers for all the related the project items"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/categories/:id/projects/:id": {
+      "get": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "put": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "post": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "delete": {
+        "description": "delete the instance of the relationship named projects between category and project using the :id",
+        "responses": {
+          "200": {
+            "description": "deleted the relationship"
+          },
+          "400": {
+            "description": "error when deleting the relationship"
+          },
+          "404": {
+            "description": "relationship not found"
+          }
+        }
+      },
+      "options": {
+        "description": "show all Options for endpoint of categories/:id/projects/:id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "head": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      },
+      "patch": {
+        "description": "method not allowed",
+        "responses": {
+          "405": {
+            "description": "Method not allowed"
+          }
+        }
+      }
+    },
+    "/shutdown": {
+      "get": {
+        "description": "Shutdown the API server",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  }
+}
