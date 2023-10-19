@@ -3,7 +3,14 @@ import unittest
 
 from helper_functions import *
 
+
+class TestTodo(unittest.TestCase):
+    def test(self):
+        self.assertEqual(True, True)
+
+
 if __name__ == "__main__":
+    unittest.main()
     # r = requests.post("http://httpbin.org/post", json={"test": "cheers"})
     # print(r.status_code)
 
