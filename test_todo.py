@@ -5,6 +5,8 @@ from helper_functions import *
 
 
 class TestTodos(unittest.TestCase):
+    """Test /todos"""
+
     def setUp(self):
         """initialize database for testing"""
         self.URL = "todos"
@@ -48,12 +50,6 @@ class TestTodos(unittest.TestCase):
     def testHead(self):
         r = sendRequest("HEAD", self.URL)
         self.assertTrue(isHEAD(r))
-
-    # def testGetAll
-
-    # def testGetAll(self):
-    #     r = sendRequest("GET", self.URL, payload_type="json")
-    #     self.assertEqual(len(r.json().get("todos")), 300)
 
 
 if __name__ == "__main__":
