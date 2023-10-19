@@ -1,7 +1,7 @@
 import json
 import unittest
-
 from helper_functions import *
+import json
 
 if __name__ == "__main__":
     # r = requests.post("http://httpbin.org/post", json={"test": "cheers"})
@@ -21,5 +21,3 @@ if __name__ == "__main__":
         data,
     )
     print(r.json().get("id"))
-
-    # sendRequest("POST", "http://localhost:4567/todos", True, data)
