@@ -14,6 +14,13 @@ TEST_DATA_CATEGORY = {
     "description": "This is a description",
 }
 
+TEST_DATA_TASKOF = {
+    "title": "Test Taskof Title",
+    "completed": False,
+    "active": False,
+    "description": "Test Taskof description",
+}
+
 
 def printResponse(response, type):
     """
@@ -135,6 +142,11 @@ def todosGetEntries(URL="todos"):
 def todosCategoriesGetEntries(URL="todos/:id/categories"):
     r = sendRequest("GET", URL)
     return r.json().get("categories")
+
+
+def todosTaskofGetEntries(URL="todos/:id/tasksof"):
+    r = sendRequest("GET", URL)
+    return r.json().get("projects")
 
 
 def todosSetUp(URL="todos"):

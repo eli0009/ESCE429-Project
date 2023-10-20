@@ -9,11 +9,20 @@
 
 # Capabilities
 
+## /todos/:id
+
+### DELETE
+- Deleting an id also deletes all taskof and categories associated with it
+
 ## /todos/:id/tasksof
-- Create new task if no task id is specified
+
+### POST
+- Create new task if no task id is specified (undocumented behavior)
 - Add a task to specified :id
 - Add existing task to id by specifying task id in body
+- Example request for `http://localhost:4567/todos/1/tasksof`
 ```json
+# POST body
 {
     "id": "4",
     "title": "Test Taskof Title",
@@ -21,9 +30,58 @@
     "active": false,
     "description": "Test Taskof description"
 }
-```
-  
 
+# undocumented behavior body
+{
+    "title": "Test Taskof Title",
+    "completed": false,
+    "active": false,
+    "description": "Test Taskof description"
+}
+```
+
+## /projects
+Projects seem to be linked with `/todos/:id/tasksof`. Any task created will appear in projects
+
+# Bugs
+
+## /todos/:id/categories
+### GET
+- Returns every single category even if an :id is specified, ex
+`http://localhost:4567/todos/1/categories` will return all categories even if `id = 1` was specified. This is unexpected because it was specified in the documentation that only categories for specific id will be returned
+```json
+# ID response
+{
+    "todos": [
+        {
+            "id": "20",
+            "title": "officia deserunt mol",
+            "doneStatus": "true",
+            "description": "deserunt mollit anim",
+            "categories": [
+                {
+                    "id": "8"
+                }
+            ]
+        }
+    ]
+}
+
+# Category response
+{
+    "categories": [
+        {
+            "id": "8",
+            "title": "Whatever",
+            "description": "This is a description"
+        }
+    ]
+}
+```
+
+## /todos/:id/tasksof
+### POST
+- This bug is detailed in the file `test_todos_id_taskof.py` in the function `BUGGEDtestPostWithID()`, basically when you create a new taskof with an existing taskof ID, you will find that there are 2 taskof entries with same ID, which makes no sense because ID are supposed to be unique
 
 # GUIDE
 
@@ -35,7 +93,7 @@ bash run_unittests.sh
 ```
 > Other
 ```bash
-python3 -m unittest discover -p "test_*.py"
+python -m unittest discover -p "test_*.py"
 ```
 
 ## Running one module at a time
