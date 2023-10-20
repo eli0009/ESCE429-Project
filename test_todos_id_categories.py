@@ -45,5 +45,6 @@ class TestTodosIdCategories(unittest.TestCase):
 
 
 if __name__ == "__main__":
+    unittest.main()
     print(todosCategoriesGetEntries())
     print(todosCategoriesGetEntries()[0].get("id"))
