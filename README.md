@@ -41,7 +41,8 @@
 ```
 
 ## /projects
-Projects seem to be linked with `/todos/:id/tasksof`. Any task created will appear in projects, however deleting ids with not delete any project
+- Projects seem to be linked with `/todos/:id/tasksof`. Any task created will appear in projects, however deleting ids with not delete any project
+- Deleting a project will delete its categories and taskof, just like todos
 
 
 ## /projects/:id
