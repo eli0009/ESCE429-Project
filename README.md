@@ -89,6 +89,9 @@
 ### POST
 - This bug is detailed in the file `test_todos_id_taskof.py` in the function `BUGGEDtestPostWithID()`, basically when you create a new taskof with an existing taskof ID, you will find that there are 2 taskof entries with same ID, which makes no sense because ID are supposed to be unique
 
+## /projects/:id/tasks
+### GET
+- Same problem as it's /todos counterpart, specifying id is useless because it will always return everything
 
 # Howto
 

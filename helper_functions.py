@@ -33,6 +33,11 @@ TEST_DATA_PROJECT_CATEGORY = {
     "description": "Test Project Category description",
 }
 
+TEST_DATA_PROJECT_TASKS = {
+    "title": "test title",
+    "doneStatus": False,
+    "description": "test description",
+}
 
 def printResponse(response, type):
     """
@@ -190,6 +195,10 @@ def projectsGetEntries(URL="projects"):
 def projectsCategoriesGetEntries(URL="projects/:id/categories"):
     r = sendRequest("GET", URL)
     return r.json().get("categories")
+
+def projectsTasksGetEntries(URL="projects/:id/tasks"):
+    r = sendRequest("GET", URL)
+    return r.json().get("todos")
 
 def projectsSetUp(URL="projects"):
     """
