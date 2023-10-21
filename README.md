@@ -7,6 +7,16 @@
 - Unit Testing (code, video): Enlai Li
 - Report (summaries, bugs): Shyam Desai
 
+# Description
+
+This folder contains one file for each API endpoint (module), and each file contains at least one unit case for each method described in the documentation, for a total of 50 unit tests.
+
+## Notes
+
+- The unittest framework already runs the tests in random order so there is no need to worry about determining order using pseudo random number generation
+- The database is wiped and filled with test value before each of the 50 unit tests in order to ensure that they can be run in any order, making each test truly independent
+
+
 # Capabilities
 
 ## /todos/:id
@@ -41,7 +51,13 @@
 ```
 
 ## /projects
-Projects seem to be linked with `/todos/:id/tasksof`. Any task created will appear in projects
+- Projects seem to be linked with `/todos/:id/tasksof`. Any task created will appear in projects, however deleting ids with not delete any project
+- Deleting a project will delete its categories and taskof, just like todos
+
+
+## /projects/:id
+## POST
+- Works the same way as PUT
 
 # Bugs
 
@@ -83,10 +99,14 @@ Projects seem to be linked with `/todos/:id/tasksof`. Any task created will appe
 ### POST
 - This bug is detailed in the file `test_todos_id_taskof.py` in the function `BUGGEDtestPostWithID()`, basically when you create a new taskof with an existing taskof ID, you will find that there are 2 taskof entries with same ID, which makes no sense because ID are supposed to be unique
 
-# GUIDE
+## /projects/:id/tasks
+### GET
+- Same problem as it's /todos counterpart, specifying id is useless because it will always return everything
+
+# Howto
 
 ## Running all tests at once
-To run tests, run the following command inside current directory. The packages unittest and requests are required. This will run test from every test module
+To run tests, run the following command inside current directory. The python packages unittest and requests are required. This will run test from every test module
 > Linux
 ```bash
 bash run_unittests.sh
@@ -97,12 +117,19 @@ python -m unittest discover -p "test_*.py"
 ```
 
 ## Running one module at a time
+> using command-line
+
+Run the following in terminal, replace "filename.py" with the name of the python test file
+```bash
+python -m unittest discover -p "filename.py"
+# example
+python -m unittest discover -p test_todos.py
+```
+> running files
+
 Replace everything under, and including `if __name__ == "__main__":` with:
 ```python
 if __name__ == "__main__":
     unittest.main()
 ```
 Afterward, simply run the python file
-# Notes
-
-- The unittest framework already runs the tests in random order so there is no need to worry about determining order using pseudo random number generation

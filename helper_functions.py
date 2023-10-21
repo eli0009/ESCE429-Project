@@ -21,6 +21,23 @@ TEST_DATA_TASKOF = {
     "description": "Test Taskof description",
 }
 
+TEST_DATA_PROJECT = {
+    "title": "Test Project Title",
+    "completed": False,
+    "active": True,
+    "description": "Test Project description",
+}
+
+TEST_DATA_PROJECT_CATEGORY = {
+    "title": "Test Project Category Title",
+    "description": "Test Project Category description",
+}
+
+TEST_DATA_PROJECT_TASKS = {
+    "title": "test title",
+    "doneStatus": False,
+    "description": "test description",
+}
 
 def printResponse(response, type):
     """
@@ -154,12 +171,6 @@ def todosSetUp(URL="todos"):
     SetUp database for testing, test if API is running,
     delete all data from database, including id, categories, projects
     """
-    data = {
-        "title": "officia deserunt mol",
-        "doneStatus": True,
-        "description": "deserunt mollit anim",
-    }
-
     # check if api is running
     if isAPIRunning(URL) is False:
         return False
@@ -171,4 +182,38 @@ def todosSetUp(URL="todos"):
     if len(todosGetEntries(URL)) != 0:
         return False
 
+    return True
+
+"""Test projects"""
+def projectsGetEntries(URL="projects"):
+    """
+    Get all entries from the projects database
+    """
+    r = sendRequest("GET", URL)
+    return r.json().get("projects")
+
+def projectsCategoriesGetEntries(URL="projects/:id/categories"):
+    r = sendRequest("GET", URL)
+    return r.json().get("categories")
+
+def projectsTasksGetEntries(URL="projects/:id/tasks"):
+    r = sendRequest("GET", URL)
+    return r.json().get("todos")
+
+def projectsSetUp(URL="projects"):
+    """
+    Remove all entries from the projects database
+    """
+    # check if api is running
+    if isAPIRunning(URL) is False:
+        return False
+    
+    ## delete all data database
+    for entry in projectsGetEntries(URL):
+        sendRequest("DELETE", f"projects/{entry.get('id')}")
+    
+    # check if database is empty
+    if len(projectsGetEntries(URL)) != 0:
+        return False
+    
     return True
