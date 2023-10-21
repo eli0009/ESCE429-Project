@@ -41,7 +41,7 @@
 ```
 
 ## /projects
-Projects seem to be linked with `/todos/:id/tasksof`. Any task created will appear in projects
+Projects seem to be linked with `/todos/:id/tasksof`. Any task created will appear in projects, however deleting ids with not delete any project
 
 # Bugs
 
@@ -83,10 +83,10 @@ Projects seem to be linked with `/todos/:id/tasksof`. Any task created will appe
 ### POST
 - This bug is detailed in the file `test_todos_id_taskof.py` in the function `BUGGEDtestPostWithID()`, basically when you create a new taskof with an existing taskof ID, you will find that there are 2 taskof entries with same ID, which makes no sense because ID are supposed to be unique
 
-# GUIDE
+# Howto
 
 ## Running all tests at once
-To run tests, run the following command inside current directory. The packages unittest and requests are required. This will run test from every test module
+To run tests, run the following command inside current directory. The python packages unittest and requests are required. This will run test from every test module
 > Linux
 ```bash
 bash run_unittests.sh
@@ -97,6 +97,16 @@ python -m unittest discover -p "test_*.py"
 ```
 
 ## Running one module at a time
+> using command-line
+
+Run the following in terminal, replace "filename.py" with the name of the python test file
+```bash
+python -m unittest discover -p "filename.py"
+# example
+python -m unittest discover -p test_todos.py
+```
+> running files
+
 Replace everything under, and including `if __name__ == "__main__":` with:
 ```python
 if __name__ == "__main__":
