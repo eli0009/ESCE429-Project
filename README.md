@@ -7,6 +7,16 @@
 - Unit Testing (code, video): Enlai Li
 - Report (summaries, bugs): Shyam Desai
 
+# Description
+
+This folder contains one file for each API endpoint (module), and each file contains at least one unit case for each method described in the documentation, for a total of 50 unit tests.
+
+## Notes
+
+- The unittest framework already runs the tests in random order so there is no need to worry about determining order using pseudo random number generation
+- The database is wiped and filled with test value before each of the 50 unit tests in order to ensure that they can be run in any order, making each test truly independent
+
+
 # Capabilities
 
 ## /todos/:id
@@ -123,6 +133,3 @@ if __name__ == "__main__":
     unittest.main()
 ```
 Afterward, simply run the python file
-# Notes
-
-- The unittest framework already runs the tests in random order so there is no need to worry about determining order using pseudo random number generation
